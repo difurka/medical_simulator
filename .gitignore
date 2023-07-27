@@ -73,3 +73,4 @@ Thumbs.db
 
 
 src/medical_simulator/CMakeLists.txt.user
+src/build-medical_simulator-Desktop_Qt_5_12_12_GCC_64bit-Debug/*
