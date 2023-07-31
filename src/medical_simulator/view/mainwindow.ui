@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>490</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Chenge</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>500</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ON</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="draw_pixels">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>24</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Отрисовать</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_guess">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>80</y>
+      <width>231</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Введите процент окрашенного: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_percent">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>80</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>%</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_colour_background">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>330</y>
+      <width>81</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>цвет фона</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_colour_pixel">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>360</y>
+      <width>91</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>цвет частиц</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_size_field">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>300</y>
+      <width>101</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>вид поля</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_size_pixel">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>390</y>
+      <width>111</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>размер частиц</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_settings">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>286</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Настройки:</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::PlainText</enum>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="text_percents">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>75</y>
+      <width>51</width>
+      <height>28</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_check_answer">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>120</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="text">
+     <string>Проверить ответ</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>251</width>
+      <height>201</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTabWidget" name="tab_choose">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>330</y>
+      <width>194</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="HighlightedText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="PlaceholderText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="128">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="HighlightedText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="PlaceholderText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="128">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>239</red>
+          <green>239</green>
+          <blue>239</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="HighlightedText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="PlaceholderText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="128">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="rectangle">
+     <attribute name="title">
+      <string>Прямоугольник</string>
+     </attribute>
+     <widget class="QLabel" name="label_high">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>высота</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_width">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ширина</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_colour_background_rectangle">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>81</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>цвет фона</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="text_width">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>40</y>
+        <width>51</width>
+        <height>28</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="text_high">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>10</y>
+        <width>51</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>255</red>
+            <green>255</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>255</red>
+            <green>255</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>239</red>
+            <green>239</green>
+            <blue>239</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="circle">
+     <attribute name="title">
+      <string>Круг</string>
+     </attribute>
+     <widget class="QLabel" name="label_radius">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>радиус</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_colour_background_circle">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>81</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>цвет фона</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="text_radius">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>30</y>
+        <width>51</width>
+        <height>28</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="button_choose_colour">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>330</y>
+      <width>71</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
