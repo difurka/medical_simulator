@@ -182,7 +182,7 @@
      <string>Проверить ответ</string>
     </property>
    </widget>
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="PaintWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -293,7 +293,7 @@
      </palette>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="rectangle">
      <attribute name="title">
@@ -438,11 +438,24 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QPushButton" name="button_choose_colour">
+   <widget class="QPushButton" name="button_choose_colour_back">
     <property name="geometry">
      <rect>
       <x>140</x>
       <y>330</y>
+      <width>71</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_choose_colour_pixel">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>360</y>
       <width>71</width>
       <height>25</height>
      </rect>
@@ -464,6 +477,14 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PaintWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">view/paintwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

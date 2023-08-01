@@ -4,6 +4,14 @@ project(medical_simulator VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(OPT_FLAGS  "-std=c++11")
+set(CMAKE_CXX_FLAGS_RELEASE "${OPT_FLAGS}")
+set(CMAKE_C_FLAGS_RELEASE "${OPT_FLAGS}")
+
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -16,9 +24,16 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
-        view/mainwindow.cpp
-        view/mainwindow.h
+        view/mainwindow.h view/mainwindow.cpp
+
         view/mainwindow.ui
+         view/paintwidget.h view/paintwidget.cpp
+        model/figure.h
+        model/circle.h
+        model/rectangle.h
+        model/model.h
+        controller/controller.h
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
