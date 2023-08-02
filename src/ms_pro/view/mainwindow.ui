@@ -454,16 +454,6 @@
      <string/>
     </property>
    </widget>
-   <widget class="PaintWidget" name="area" native="true">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>40</y>
-      <width>221</width>
-      <height>181</height>
-     </rect>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -477,14 +467,6 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>PaintWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">view/paintwidget.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
