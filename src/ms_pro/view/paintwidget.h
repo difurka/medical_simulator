@@ -32,7 +32,7 @@ class PaintWidget : public QWidget {
 
   QPixmap pixmap_;
   QPoint lastPos_;
-  // std::unique_ptr<QPen> pen_;
+   std::unique_ptr<QPen> pen_;
   // QPen* pen_;
 
   std::vector<std::vector<bool>> Converter(

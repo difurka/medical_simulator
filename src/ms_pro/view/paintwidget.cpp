@@ -6,7 +6,7 @@ PaintWidget::PaintWidget(QWidget *parent)
   , controller_(nullptr)
 {
   //  pen_ = new QPen(Qt::white, kDefaultPenWidth, Qt::SolidLine, Qt::SquareCap, Qt::RoundJoin);
-//  pen_ = std::make_unique<QPen>(Qt::white, kDefaultPenWidth, Qt::SolidLine, Qt::SquareCap, Qt::RoundJoin);
+  pen_ = std::make_unique<QPen>( QPen(Qt::white, kDefaultPenWidth, Qt::SolidLine, Qt::SquareCap, Qt::RoundJoin));
 }
 
 void PaintWidget::paintEvent(QPaintEvent *event) {  // override
