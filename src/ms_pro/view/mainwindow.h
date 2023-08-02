@@ -22,6 +22,12 @@ private slots:
     void on_button_choose_colour_back_clicked();
 
     void on_button_choose_colour_pixel_clicked();
+    void on_slider_pixel_size_valueChanged(int value);
+    void on_spin_pixel_size_editingFinished();
+ private:
+    QColor GetColor_(QColor current_color);
+    void SetButtonColor_(QPushButton *button, QColor color);
+    void InitSettings_();
 
 private:
     Ui::MainWindow *ui;

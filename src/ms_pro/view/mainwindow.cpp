@@ -6,11 +6,21 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    InitSettings_();
+
+}
+
+void MainWindow::InitSettings_()
+{
     QString qss = QString("background-color: %1").arg(col_pixel_.name());
     ui->button_choose_colour_pixel->setStyleSheet(qss);
     qss = QString("background-color: %1").arg(col_back_.name());
     ui->button_choose_colour_back->setStyleSheet(qss);
+
+    ui->label_colour_background->setToolTip ("Colour of back");
+
 }
+
 
 MainWindow::~MainWindow()
 {
@@ -27,26 +37,42 @@ void MainWindow::on_pushButton_clicked()
     }
 }
 
+QColor MainWindow::GetColor_(QColor current_color) {
+  QColorDialog dialog(this);
+  QColor result = current_color;
+  dialog.setCurrentColor(current_color);
+  if (dialog.exec() == QColorDialog::Accepted) {
+    result = dialog.selectedColor();
+  }
+  return result;
+}
+
+void MainWindow::SetButtonColor_(QPushButton *button, QColor color) {
+  button->setStyleSheet("background-color: "+color.name());
+}
 
 void MainWindow::on_button_choose_colour_back_clicked()
 {
-    QColor col = QColorDialog::getColor(Qt::white, this);
-    if(col.isValid()) {
-        QString qss = QString("background-color: %1").arg(col.name());
-        ui->button_choose_colour_back->setStyleSheet(qss);
-        col_back_ = col;
-    }
+    QColor color = GetColor_(col_back_);
+    SetButtonColor_(ui->button_choose_colour_back, color);
+    col_back_ = color;
 }
 
 
 void MainWindow::on_button_choose_colour_pixel_clicked()
 {
-    QColor col = QColorDialog::getColor(Qt::white, this);
-    if(col.isValid()) {
-        QString qss = QString("background-color: %1").arg(col.name());
-        ui->button_choose_colour_pixel->setStyleSheet(qss);
-        col_pixel_ = col;
-    }
+    QColor color = GetColor_(col_pixel_);
+    SetButtonColor_(ui->button_choose_colour_pixel, color);
+    col_pixel_ = color;
 }
 
+void MainWindow::on_slider_pixel_size_valueChanged(int value) {
+//  controller_->RotationAroundAxis(s21::OX, value);
+  ui->spin_pixel_size->setValue(value);
+}
+
+
+void MainWindow::on_spin_pixel_size_editingFinished() {
+  ui->slider_pixel_size->setSliderPosition(ui->spin_pixel_size->value());
+}
 
