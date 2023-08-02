@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QRect>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,6 +10,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     InitSettings_();
 
+}
+
+void MainWindow::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+    QPainter painter(this); // Create object of QPainter
+    // Set Brush
+//    painter.setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::FlatCap));
+    painter.setBrush(QBrush(col_back_, Qt::SolidPattern));
+
+//    QRect rect(kXcenter, kYcenter, radius_*2, radius_*2);
+    painter.drawEllipse(QPointF(kXcenter, kYcenter), radius_, radius_);
 }
 
 void MainWindow::InitSettings_()
@@ -74,5 +88,27 @@ void MainWindow::on_slider_pixel_size_valueChanged(int value) {
 
 void MainWindow::on_spin_pixel_size_editingFinished() {
   ui->slider_pixel_size->setSliderPosition(ui->spin_pixel_size->value());
+}
+
+
+void MainWindow::on_draw_pixels_clicked()
+{
+    repaint();
+}
+
+
+void MainWindow::on_slider_circle_radius_valueChanged(int value)
+{
+    ui->spin_circule_radius->setValue(value);
+    radius_ = value;
+    repaint();
+}
+
+
+void MainWindow::on_spin_circule_radius_editingFinished()
+{
+    ui->slider_circle_radius->setSliderPosition(ui->spin_circule_radius->value());
+    radius_ = ui->spin_circule_radius->value();
+    repaint();
 }
 

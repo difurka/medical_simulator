@@ -83,7 +83,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>330</y>
+      <y>375</y>
       <width>81</width>
       <height>17</height>
      </rect>
@@ -96,7 +96,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>360</y>
+      <y>405</y>
       <width>91</width>
       <height>17</height>
      </rect>
@@ -122,7 +122,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>390</y>
+      <y>435</y>
       <width>111</width>
       <height>17</height>
      </rect>
@@ -135,7 +135,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>286</y>
+      <y>331</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -187,7 +187,7 @@
      <rect>
       <x>460</x>
       <y>330</y>
-      <width>194</width>
+      <width>311</width>
       <height>131</height>
      </rect>
     </property>
@@ -283,7 +283,7 @@
      </palette>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="rectangle">
      <attribute name="title">
@@ -416,14 +416,63 @@
        <string>цвет фона</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="text_radius">
+     <widget class="QSlider" name="slider_circle_radius">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>80</x>
         <y>30</y>
-        <width>51</width>
-        <height>28</height>
+        <width>121</width>
+        <height>20</height>
        </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="minimum">
+       <number>10</number>
+      </property>
+      <property name="maximum">
+       <number>150</number>
+      </property>
+      <property name="value">
+       <number>85</number>
+      </property>
+      <property name="sliderPosition">
+       <number>85</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksAbove</enum>
+      </property>
+      <property name="tickInterval">
+       <number>10</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spin_circule_radius">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>30</y>
+        <width>44</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>150</number>
+      </property>
+      <property name="value">
+       <number>75</number>
       </property>
      </widget>
     </widget>
@@ -432,7 +481,7 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>330</y>
+      <y>375</y>
       <width>71</width>
       <height>25</height>
      </rect>
@@ -445,7 +494,7 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>360</y>
+      <y>405</y>
       <width>71</width>
       <height>25</height>
      </rect>
@@ -458,7 +507,7 @@
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>390</y>
+      <y>435</y>
       <width>151</width>
       <height>20</height>
      </rect>
@@ -501,7 +550,7 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>390</y>
+      <y>435</y>
       <width>44</width>
       <height>26</height>
      </rect>
@@ -511,6 +560,16 @@
     </property>
     <property name="value">
      <number>100</number>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>300</width>
+      <height>300</height>
+     </rect>
     </property>
    </widget>
   </widget>
