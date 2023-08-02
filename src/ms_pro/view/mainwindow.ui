@@ -562,13 +562,13 @@
      <number>100</number>
     </property>
    </widget>
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="QOpenGLWidget" name="openGLWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
+      <x>40</x>
+      <y>40</y>
       <width>300</width>
-      <height>300</height>
+      <height>200</height>
      </rect>
     </property>
    </widget>
