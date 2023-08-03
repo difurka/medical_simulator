@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QRect>
+#include <QImage>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -15,13 +16,58 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
-    QPainter painter(this); // Create object of QPainter
-    // Set Brush
-//    painter.setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::FlatCap));
-    painter.setBrush(QBrush(col_back_, Qt::SolidPattern));
+//    QPainter painter(this); // Create object of QPainter
+//    // Set Brush
+//    painter.setPen(QPen(col_back_, 1, Qt::SolidLine, Qt::FlatCap));
+//    painter.setBrush(QBrush(col_back_, Qt::SolidPattern));
 
-//    QRect rect(kXcenter, kYcenter, radius_*2, radius_*2);
-    painter.drawEllipse(QPointF(kXcenter, kYcenter), radius_, radius_);
+//    painter.drawEllipse(QPointF(kXcenter, kYcenter), radius_, radius_);
+
+//    painter.setPen(QPen(col_pixel_, 1, Qt::SolidLine, Qt::FlatCap));
+//    painter.setBrush(QBrush(col_pixel_, Qt::SolidPattern));
+//    painter.drawEllipse(QPointF(kXcenter, kYcenter), 10, 10);
+
+
+
+// Create a place to draw the circles.
+auto circles = QImage( 300, 300, QImage::Format_ARGB32 );
+
+// Init the painter
+QPainter p(&circles);
+
+// DestinationOver results in the current painting
+// going below the existing image.
+p.setCompositionMode( QPainter::CompositionMode_DestinationOver );
+p.setRenderHints( QPainter::HighQualityAntialiasing );
+
+
+    p.setPen(QPen(col_back_, 1, Qt::SolidLine, Qt::FlatCap));
+    p.setBrush(QBrush(col_back_, Qt::SolidPattern));
+
+    p.drawEllipse(QPointF(kXcenter, kYcenter), radius_, radius_);
+
+    p.setPen(QPen(col_pixel_, 1, Qt::SolidLine, Qt::FlatCap));
+    p.setBrush(QBrush(col_pixel_, Qt::SolidPattern));
+    p.drawEllipse(QPointF(kXcenter, kYcenter), 10, 10);
+
+
+
+
+//// The above image is transparent. If you prefer to have
+//// a while/color bg do this:
+//auto final = QImage( 700 ,700, QImage::Format_ARGB32 );
+////final.fill( Qt::lightgray );
+
+auto p1 = QPainter( this);
+
+//// Now we want the current painting to be above the existing
+//p1.setCompositionMode( QPainter::CompositionMode_SourceOver );
+//p1.setRenderHints( QPainter::HighQualityAntialiasing );
+
+p1.drawImage( QRect( 0, 0, 700, 700 ), circles );
+
+
+
 }
 
 void MainWindow::InitSettings_()
@@ -70,6 +116,7 @@ void MainWindow::on_button_choose_colour_back_clicked()
     QColor color = GetColor_(col_back_);
     SetButtonColor_(ui->button_choose_colour_back, color);
     col_back_ = color;
+    repaint();
 }
 
 
@@ -78,6 +125,7 @@ void MainWindow::on_button_choose_colour_pixel_clicked()
     QColor color = GetColor_(col_pixel_);
     SetButtonColor_(ui->button_choose_colour_pixel, color);
     col_pixel_ = color;
+    repaint();
 }
 
 void MainWindow::on_slider_pixel_size_valueChanged(int value) {
