@@ -283,7 +283,7 @@
      </palette>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="rectangle">
      <attribute name="title">
@@ -528,13 +528,13 @@
      <number>0</number>
     </property>
     <property name="maximum">
-     <number>200</number>
+     <number>20</number>
     </property>
     <property name="value">
-     <number>100</number>
+     <number>10</number>
     </property>
     <property name="sliderPosition">
-     <number>100</number>
+     <number>10</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -543,7 +543,7 @@
      <enum>QSlider::TicksAbove</enum>
     </property>
     <property name="tickInterval">
-     <number>90</number>
+     <number>1</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spin_pixel_size">
@@ -556,10 +556,10 @@
      </rect>
     </property>
     <property name="maximum">
-     <number>200</number>
+     <number>20</number>
     </property>
     <property name="value">
-     <number>100</number>
+     <number>10</number>
     </property>
    </widget>
   </widget>

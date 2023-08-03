@@ -16,55 +16,73 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
-//    QPainter painter(this); // Create object of QPainter
-//    // Set Brush
-//    painter.setPen(QPen(col_back_, 1, Qt::SolidLine, Qt::FlatCap));
-//    painter.setBrush(QBrush(col_back_, Qt::SolidPattern));
+//    auto circles = QImage( 300, 300, QImage::Format_ARGB32 );
+    QPainter painter(this); // Create object of QPainter
+    // Set Brush
+//    QPainter::CompositionMode mode = currentMode();
 
-//    painter.drawEllipse(QPointF(kXcenter, kYcenter), radius_, radius_);
+    painter.setRenderHint(QPainter::Antialiasing);
+//    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+// painter.setCompositionMode(QPainter::CompositionMode_Source);
+ painter.setPen(QPen(col_back_, 1, Qt::SolidLine, Qt::FlatCap));
+    painter.setBrush(QBrush(col_back_, Qt::SolidPattern));
 
-//    painter.setPen(QPen(col_pixel_, 1, Qt::SolidLine, Qt::FlatCap));
-//    painter.setBrush(QBrush(col_pixel_, Qt::SolidPattern));
-//    painter.drawEllipse(QPointF(kXcenter, kYcenter), 10, 10);
+if (figure_ == figure_t::CIRCLE) {
+    painter.drawEllipse(QPointF(kXcenter, kYcenter), radius_, radius_);
+} else {
+    painter.drawRect(kXcenter - height_/2, kXcenter - width_/2 , height_, width_);
+}
+//    painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+//    painter.setRenderHint(QPainter::Antialiasing, true);
+//    painter.setCompositionMode(QPainter::CompositionMode_SourceAtop);
+    painter.setPen(QPen(col_pixel_, 1, Qt::SolidLine, Qt::FlatCap));
+    painter.setBrush(QBrush(col_pixel_, Qt::SolidPattern));
+    double x = (kXcenter*1.4 - radius_)/ 1.4;
+    double y = (kYcenter*1.4 - radius_)/ 1.4;
+    painter.drawEllipse(QPointF(x, y), radius_pixel_, radius_pixel_);
+QRect rect = this->geometry();
+
+painter.setClipRegion(QRegion(rect.width()/2,
+                                rect.height()/2,
+                                150, 150,
+                                QRegion::Ellipse));
+//circles.fill(Qt::transparent);
+//// Create a place to draw the circles.
+//auto circles = QImage( 300, 300, QImage::Format_ARGB32 );
+
+//// Init the painter
+//QPainter p(&circles);
+
+//// DestinationOver results in the current painting
+//// going below the existing image.
+//p.setCompositionMode( QPainter::CompositionMode_DestinationOver );
+//p.setRenderHints( QPainter::HighQualityAntialiasing );
+
+
+//    p.setPen(QPen(col_back_, 1, Qt::SolidLine, Qt::FlatCap));
+//    p.setBrush(QBrush(col_back_, Qt::SolidPattern));
+
+//    p.drawEllipse(QPointF(kXcenter, kYcenter), radius_, radius_);
+
+//    p.setPen(QPen(col_pixel_, 1, Qt::SolidLine, Qt::FlatCap));
+//    p.setBrush(QBrush(col_pixel_, Qt::SolidPattern));
+//    p.drawEllipse(QPointF(kXcenter, kYcenter), 10, 10);
 
 
 
-// Create a place to draw the circles.
-auto circles = QImage( 300, 300, QImage::Format_ARGB32 );
 
-// Init the painter
-QPainter p(&circles);
+////// The above image is transparent. If you prefer to have
+////// a while/color bg do this:
+////auto final = QImage( 700 ,700, QImage::Format_ARGB32 );
+//////final.fill( Qt::lightgray );
 
-// DestinationOver results in the current painting
-// going below the existing image.
-p.setCompositionMode( QPainter::CompositionMode_DestinationOver );
-p.setRenderHints( QPainter::HighQualityAntialiasing );
+//auto p1 = QPainter( this);
 
+////// Now we want the current painting to be above the existing
+////p1.setCompositionMode( QPainter::CompositionMode_SourceOver );
+////p1.setRenderHints( QPainter::HighQualityAntialiasing );
 
-    p.setPen(QPen(col_back_, 1, Qt::SolidLine, Qt::FlatCap));
-    p.setBrush(QBrush(col_back_, Qt::SolidPattern));
-
-    p.drawEllipse(QPointF(kXcenter, kYcenter), radius_, radius_);
-
-    p.setPen(QPen(col_pixel_, 1, Qt::SolidLine, Qt::FlatCap));
-    p.setBrush(QBrush(col_pixel_, Qt::SolidPattern));
-    p.drawEllipse(QPointF(kXcenter, kYcenter), 10, 10);
-
-
-
-
-//// The above image is transparent. If you prefer to have
-//// a while/color bg do this:
-//auto final = QImage( 700 ,700, QImage::Format_ARGB32 );
-////final.fill( Qt::lightgray );
-
-auto p1 = QPainter( this);
-
-//// Now we want the current painting to be above the existing
-//p1.setCompositionMode( QPainter::CompositionMode_SourceOver );
-//p1.setRenderHints( QPainter::HighQualityAntialiasing );
-
-p1.drawImage( QRect( 0, 0, 700, 700 ), circles );
+//p1.drawImage( QRect( 0, 0, 700, 700 ), circles );
 
 
 
@@ -78,6 +96,7 @@ void MainWindow::InitSettings_()
     ui->button_choose_colour_back->setStyleSheet(qss);
 
     ui->label_colour_background->setToolTip ("Colour of back");
+    figure_ = figure_t::CIRCLE;
 
 }
 
@@ -131,11 +150,15 @@ void MainWindow::on_button_choose_colour_pixel_clicked()
 void MainWindow::on_slider_pixel_size_valueChanged(int value) {
 //  controller_->RotationAroundAxis(s21::OX, value);
   ui->spin_pixel_size->setValue(value);
+  radius_pixel_ = value;
+  repaint();
 }
 
 
 void MainWindow::on_spin_pixel_size_editingFinished() {
   ui->slider_pixel_size->setSliderPosition(ui->spin_pixel_size->value());
+  radius_pixel_ = ui->spin_pixel_size->value();
+  repaint();
 }
 
 
@@ -157,6 +180,13 @@ void MainWindow::on_spin_circule_radius_editingFinished()
 {
     ui->slider_circle_radius->setSliderPosition(ui->spin_circule_radius->value());
     radius_ = ui->spin_circule_radius->value();
+    repaint();
+}
+
+
+void MainWindow::on_tab_choose_tabBarClicked(int index)
+{
+    figure_ = static_cast<figure_t>(index);
     repaint();
 }
 

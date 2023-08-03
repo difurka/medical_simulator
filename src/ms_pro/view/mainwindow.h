@@ -12,6 +12,11 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+public:
+    enum class figure_t {
+        CIRCLE = 1,
+        RECTANGLE = 0,
+    };
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -31,6 +36,8 @@ private slots:
 
     void on_spin_circule_radius_editingFinished();
 
+    void on_tab_choose_tabBarClicked(int index);
+
 private:
     QColor GetColor_(QColor current_color);
     void SetButtonColor_(QPushButton *button, QColor color);
@@ -41,10 +48,12 @@ private:
     QColor col_back_ = "#F1CFED";
     QColor col_pixel_ = Qt::blue;
     float radius_ = 75;
-    float weigth_ = 150;
-    float heigth_ = 150;
+    float radius_pixel_ = 10;
+    float width_ = 150;
+    float height_ = 150;
     float const kXcenter = 160;
     float const kYcenter = 160;
+    figure_t figure_;
 
 
 protected:

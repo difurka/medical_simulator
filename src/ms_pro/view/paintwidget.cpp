@@ -43,6 +43,7 @@ void PaintWidget::Clear() {
 }
 
 void PaintWidget::DrawObject(Model::Type type) {
+    type = Model::Type::kCircle;
 //  Clear();
 //  auto& object = controller_->GetObj();
 //  if (type == Model::Type::kCave) {
