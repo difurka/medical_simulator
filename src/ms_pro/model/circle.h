@@ -17,6 +17,6 @@ class Circle: public Figure
     }
     
 
-    void Draw() override;
-    double GetPixelPercent() override;
+    void Draw() override { };
+    double GetPixelPercent() override { return 0;};
 };

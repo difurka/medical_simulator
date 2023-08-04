@@ -2,12 +2,15 @@
 
 #include <QApplication>
 #include <QtWidgets>
-
+#include "model/model.h"
+#include "controller/controller.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.setWindowTitle("Симулятор");
-    w.show();
+    Model model;
+    Controller controller(&model);
+    MainWindow window(&controller);
+    window.setWindowTitle("Симулятор");
+    window.show();
     return a.exec();
 }

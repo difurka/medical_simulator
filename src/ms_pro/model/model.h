@@ -2,28 +2,39 @@
 
 #include "circle.h"
 #include "rectangle.h"
+#include "utils/utils.h"
+#include <vector>
 
+#include <QDebug>
 class  Model
 {
-private:
-    Circle circle_;
-    Rectangle rectangle_;
+ private:
+    figure_t fig_;
+    std::vector<std::vector<int>> matrix_;
 
-public:
-    enum class Type
-    {
-        kCircle,
-        kRectangle
-    };
+ public:
+    Model() {
+        matrix_ = std::vector<std::vector<int>>(9, std::vector<int>(9));
+//              for (auto el : matrix_) {
+// //                 for (auto e : el) {
+//                      qDebug() << el;
+// //                 }
+//              }
 
-    Model() {}
-    ~Model() = default;
+            }
+    ~Model() {};
+    void SetFigureType(int index) {fig_ = static_cast<figure_t>(index);}
+    void GenerateCircle(float radius) {radius++;}
+    void GenerateRectangle(float width, float height) {width++; ++height;}
+    const std::vector<std::vector<int>>& GetMatrix() const {
+//        for (auto el : matrix_) {
+////                 for (auto e : el) {
+//                     qDebug() << el;
+////                 }
+//             }
+        const auto& res = std::vector<std::vector<int>>(9, std::vector<int>(9));
+             return res;}
 };
 
 
-// * определим матрицу 300х300, когда рисуем частицу с центром и радиусом,
-// * ставим значение unum::pixel (=2),
-// * заранее отмечаем enum::back (=1) для окружности или прямоугольника
-// * (обновляя каждый раз при изменении размера)
-// * после считаем отношение (pixel/ (pixel+back))*100 = actual_percent
 

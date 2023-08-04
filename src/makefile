@@ -1,7 +1,7 @@
 
 .PHONY: build pro
 
-all: pro
+all: clean pro
 
 build:
 	# rm -rf build

@@ -16,6 +16,6 @@ class Rectangle : public Figure
         width_= width;
     }
 
-    void Draw() override;
-    double GetPixelPercent() override;
+    void Draw() override {};
+    double GetPixelPercent() override {return 0;};
 };

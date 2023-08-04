@@ -14,32 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>490</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Chenge</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>500</y>
-      <width>67</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>ON</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="draw_pixels">
     <property name="geometry">
      <rect>
@@ -128,7 +102,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>размер частиц</string>
+     <string>радиус частиц</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_settings">
@@ -283,7 +257,7 @@
      </palette>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="rectangle">
      <attribute name="title">
@@ -328,61 +302,131 @@
        <string>цвет фона</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="text_width">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>40</y>
-        <width>51</width>
-        <height>28</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="text_high">
+     <widget class="QSlider" name="slider_rect_height">
       <property name="geometry">
        <rect>
         <x>90</x>
         <y>10</y>
-        <width>51</width>
-        <height>28</height>
+        <width>121</width>
+        <height>20</height>
        </rect>
       </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>239</red>
-            <green>239</green>
-            <blue>239</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="minimum">
+       <number>10</number>
+      </property>
+      <property name="maximum">
+       <number>300</number>
+      </property>
+      <property name="value">
+       <number>155</number>
+      </property>
+      <property name="sliderPosition">
+       <number>155</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksAbove</enum>
+      </property>
+      <property name="tickInterval">
+       <number>30</number>
+      </property>
+     </widget>
+     <widget class="QSlider" name="slider_rect_width">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>40</y>
+        <width>121</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="minimum">
+       <number>10</number>
+      </property>
+      <property name="maximum">
+       <number>300</number>
+      </property>
+      <property name="value">
+       <number>155</number>
+      </property>
+      <property name="sliderPosition">
+       <number>155</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksAbove</enum>
+      </property>
+      <property name="tickInterval">
+       <number>30</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spin_rect_height">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>10</y>
+        <width>51</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>10</number>
+      </property>
+      <property name="maximum">
+       <number>300</number>
+      </property>
+      <property name="value">
+       <number>155</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spin_rect_width">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>40</y>
+        <width>51</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>10</number>
+      </property>
+      <property name="maximum">
+       <number>300</number>
+      </property>
+      <property name="value">
+       <number>155</number>
+      </property>
+      <property name="displayIntegerBase">
+       <number>10</number>
       </property>
      </widget>
     </widget>
@@ -459,7 +503,7 @@
        <number>10</number>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spin_circule_radius">
+     <widget class="QSpinBox" name="spin_circle_radius">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -507,7 +551,7 @@
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>435</y>
+      <y>430</y>
       <width>151</width>
       <height>20</height>
      </rect>
@@ -549,8 +593,8 @@
    <widget class="QSpinBox" name="spin_pixel_size">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>435</y>
+      <x>320</x>
+      <y>430</y>
       <width>44</width>
       <height>26</height>
      </rect>
@@ -560,6 +604,16 @@
     </property>
     <property name="value">
      <number>10</number>
+    </property>
+   </widget>
+   <widget class="PaintWidget" name="area" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>300</width>
+      <height>300</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -575,6 +629,14 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PaintWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">view/paintwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

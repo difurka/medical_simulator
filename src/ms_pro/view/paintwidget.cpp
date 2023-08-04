@@ -5,22 +5,21 @@ PaintWidget::PaintWidget(QWidget *parent)
   : QWidget{parent}
   , controller_(nullptr)
 {
-  //  pen_ = new QPen(Qt::white, kDefaultPenWidth, Qt::SolidLine, Qt::SquareCap, Qt::RoundJoin);
-  pen_ = std::make_unique<QPen>( QPen(Qt::white, kDefaultPenWidth, Qt::SolidLine, Qt::SquareCap, Qt::RoundJoin));
+   pen_ = std::make_unique<QPen>( QPen(Qt::white, kDefaultPenWidth, Qt::SolidLine, Qt::SquareCap, Qt::RoundJoin));
 }
 
-void PaintWidget::paintEvent(QPaintEvent *event) {  // override
-  QPainter painter(this);
-  painter.drawPixmap(0, 0, pixmap_);
-  this->update();
-}
+ void PaintWidget::paintEvent(QPaintEvent *event) {  // override
+   QPainter painter(this);
+   painter.drawPixmap(0, 0, pixmap_);
+   this->update();
+ }
 
-void PaintWidget::resizeEvent(QResizeEvent *event)  {  // override
+ void PaintWidget::resizeEvent(QResizeEvent *event)  {  // override
   auto newRect = pixmap_.rect().united(rect());
   if (!(newRect == pixmap_.rect())) {
     QPixmap newPixmap{newRect.size()};
     QPainter painter{&newPixmap};
-    painter.fillRect(newPixmap.rect(), Qt::black);
+    painter.fillRect(newPixmap.rect(), Qt::white);
     painter.drawPixmap(0, 0, pixmap_);
     pixmap_ = newPixmap;
   }
@@ -29,89 +28,81 @@ void PaintWidget::resizeEvent(QResizeEvent *event)  {  // override
 
 
 
-
-void PaintWidget::Draw(const QPoint& pos) {
-  QPainter painter{&pixmap_};
-//  painter.setPen(*pen_);
-  painter.drawPoint(pos);
-  update();
-}
+// void PaintWidget::Draw(const QPoint& pos) {
+//   QPainter painter{&pixmap_};
+//   painter.setPen(*pen_); 
+//   painter.drawPoint(pos);
+//   update();
+// }
 
 void PaintWidget::Clear() {
-  pixmap_.fill(Qt::black);
+  pixmap_.fill(Qt::red);
   this->clearMask();
 }
 
-void PaintWidget::DrawObject(Model::Type type) {
-    type = Model::Type::kCircle;
-//  Clear();
-//  auto& object = controller_->GetObj();
-//  if (type == Model::Type::kCave) {
-//    DrawCave(object.GetData(), object.GetSize(), object.GetRows(), object.GetColumns());
-//  } else if (type == Model::Type::kMaze) {
-////    is_have_start_point_ = false;
-//    DrawMaze(object.GetData(), object.GetSize(), object.GetColumns());
-//  }
-}
+void PaintWidget::DrawFigure(figure_t type) {
 
-
-
-void PaintWidget::DrawLine(QPainter *painter, const std::vector<bool>& vertical,
-          const std::vector<bool>& horizontal, int line_number, int cols_number) {
-  const int kStepH = kAreaSize/horizontal.size();
-  const int kStepV = kAreaSize/cols_number;
-  int hx = 0;
-  int hy = kStepV + (kStepV * line_number);
-  int vx = kStepH;
-  int vy = 0 + (kStepV * line_number);
-  for (size_t i = 0; i < vertical.size(); ++i) {
-    if  (horizontal[i] && line_number != cols_number - 1) painter->drawLine(hx, hy, hx+kStepH, hy);
-    hx += kStepH;
-    if (vertical[i] && i!= vertical.size() - 1) painter->drawLine(vx, vy, vx, vy+kStepV);
-    vx += kStepH;
-  }
-}
-
-
-
-void  PaintWidget::DrawCave(const std::vector<bool>& data, size_t size, size_t rows, size_t columns) {
-//  mouse_event_ = false;
-  size_t k = 0;
-  std::vector<std::vector<bool>> cells = Converter(&k, columns, size, data);
-
-  const double kStepH = kAreaSize / columns;
-  const double kStepV = kAreaSize / rows;
-  QPainter painter{&pixmap_};
-
+    Clear();
+    QPainter painter{&pixmap_};
+//    auto& matrix = controller_->GetMatr();
 //  pen_->setWidth(0);
 //  pen_->setColor(Qt::white);
 //  painter.setPen(*pen_);
-  painter.setBrush(QBrush("#FFF"));
+  painter.setBrush(QBrush(Qt::blue));
 
-  for (size_t i = 0; i < rows; ++i)
-    for (size_t j = 0; j < columns; ++j) {
-      if (cells[i][j]) painter.drawRect(QRect(j * kStepH, i * kStepV, kStepH, kStepV));
-  }
+   for (size_t i = 0; i < kMaxSize; ++i)
+     for (size_t j = 0; j < kMaxSize; ++j) {
+       if (i+j < 30) {
+        painter.setBrush(QBrush(Qt::red));
+        painter.drawPoint(i, j);
+        painter.setBrush(QBrush(Qt::blue));
+       } 
+   }
   update();
+
+
 }
 
-void PaintWidget::SetController(Controller* controller) {
-  controller_ = controller;
-}
 
-std::vector<std::vector<bool>> PaintWidget::Converter(
-                size_t *index, size_t line_size,
-                size_t size, const std::vector<bool>& data) {
-  std::vector<std::vector<bool>> result;
-  for (int k = -1; *index < size; ++(*index)) {
-    if (*index % line_size == 0) {
-      result.push_back(std::vector<bool>());
-      ++k;
-    }
-    result[k].push_back(data[*index]);
-  }
-  return result;
-}
+
+// void PaintWidget::DrawLine(QPainter *painter, const std::vector<bool>& vertical,
+//           const std::vector<bool>& horizontal, int line_number, int cols_number) {
+//   const int kStepH = kAreaSize/horizontal.size();
+//   const int kStepV = kAreaSize/cols_number;
+//   int hx = 0;
+//   int hy = kStepV + (kStepV * line_number);
+//   int vx = kStepH;
+//   int vy = 0 + (kStepV * line_number);
+//   for (size_t i = 0; i < vertical.size(); ++i) {
+//     if  (horizontal[i] && line_number != cols_number - 1) painter->drawLine(hx, hy, hx+kStepH, hy);
+//     hx += kStepH;
+//     if (vertical[i] && i!= vertical.size() - 1) painter->drawLine(vx, vy, vx, vy+kStepV);
+//     vx += kStepH;
+//   }
+// }
+
+
+
+
+ void PaintWidget::SetController(Controller* controller) {
+   controller_ = controller;
+ }
+
+// std::vector<std::vector<bool>> PaintWidget::Converter(
+//                 size_t *index, size_t line_size,
+//                 size_t size, const std::vector<bool>& data) {
+//   std::vector<std::vector<bool>> result;
+//   for (int k = -1; *index < size; ++(*index)) {
+//     if (*index % line_size == 0) {
+//       result.push_back(std::vector<bool>());
+//       ++k;
+//     }
+//     result[k].push_back(data[*index]);
+//   }
+//   return result;
+// }
+////////////////
+
 
 // void PaintWidget::SetPathPoint(QMouseEvent* event) {
 //   lastPos_ = event->pos();
