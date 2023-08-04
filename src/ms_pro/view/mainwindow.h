@@ -55,8 +55,8 @@ private:
 
 private:
     Ui::MainWindow *ui;
-    QColor col_back_ = "#F1CFED";
-    QColor col_pixel_ = Qt::blue;
+    QColor col_back_;
+    QColor col_pixel_;
     float radius_ = 75;
     float radius_pixel_ = 10;
     float width_ = 150;

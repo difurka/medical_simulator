@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QRect>
 #include <QImage>
+#include "utils/utils.h"
 
 #include<QDebug>
 
@@ -20,13 +21,21 @@ MainWindow::MainWindow(Controller* controller, QWidget *parent)
 
 void MainWindow::InitSettings_()
 {
+    figure_t kFirstFigure = figure_t::CIRCLE;
+    QColor kColBack = "#F1CFED";
+    QColor kColPixel = Qt::blue;
+
+
+    col_back_ = kColBack;
+    col_pixel_ = kColPixel;
     QString qss = QString("background-color: %1").arg(col_pixel_.name());
     ui->button_choose_colour_pixel->setStyleSheet(qss);
     qss = QString("background-color: %1").arg(col_back_.name());
     ui->button_choose_colour_back->setStyleSheet(qss);
 
     ui->label_colour_background->setToolTip ("Colour of back");
-    figure_ = figure_t::CIRCLE;
+    figure_ = kFirstFigure;
+    ui->tab_choose->setCurrentIndex(static_cast<int>(kFirstFigure));
 
     // set init sliders
 
@@ -56,6 +65,8 @@ void MainWindow::InitSettings_()
     ui->spin_rect_width->setMinimum(kMinSize);
     ui->spin_rect_width->setMaximum(kMaxSize);
     ui->spin_rect_width->setValue((kMaxSize -kMinSize)/2);
+
+    ui->area->resize(kMaxSize, kMaxSize);
 
 }
 
@@ -113,7 +124,6 @@ void MainWindow::on_button_choose_colour_pixel_clicked()
 }
 
 void MainWindow::on_slider_pixel_size_valueChanged(int value) {
-//  controller_->RotationAroundAxis(s21::OX, value);
   ui->spin_pixel_size->setValue(value);
   radius_pixel_ = value;
   Update();

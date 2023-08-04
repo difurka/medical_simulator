@@ -8,6 +8,14 @@
 #include <QDebug>
 class  Model
 {
+    public:
+    
+    // class Object
+    // {
+    //     public:
+    //     std::vector<std::vector<int>> matrix_;
+    // }
+
  private:
     figure_t fig_;
     std::vector<std::vector<int>> matrix_;
@@ -27,13 +35,11 @@ class  Model
     void GenerateCircle(float radius) {radius++;}
     void GenerateRectangle(float width, float height) {width++; ++height;}
     const std::vector<std::vector<int>>& GetMatrix() const {
-//        for (auto el : matrix_) {
-////                 for (auto e : el) {
-//                     qDebug() << el;
-////                 }
-//             }
-        const auto& res = std::vector<std::vector<int>>(9, std::vector<int>(9));
-             return res;}
+        for (auto el : matrix_) {
+                     qDebug() << el;
+             }
+//        const auto& res = std::vector<std::vector<int>>(9, std::vector<int>(9));
+             return matrix_;}
 };
 
 

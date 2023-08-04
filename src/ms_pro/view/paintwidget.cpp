@@ -5,6 +5,7 @@ PaintWidget::PaintWidget(QWidget *parent)
   : QWidget{parent}
   , controller_(nullptr)
 {
+pixmap_ = QPixmap(300, 300);
    pen_ = std::make_unique<QPen>( QPen(Qt::white, kDefaultPenWidth, Qt::SolidLine, Qt::SquareCap, Qt::RoundJoin));
 }
 
@@ -44,19 +45,18 @@ void PaintWidget::DrawFigure(figure_t type) {
 
     Clear();
     QPainter painter{&pixmap_};
-//    auto& matrix = controller_->GetMatr();
-//  pen_->setWidth(0);
-//  pen_->setColor(Qt::white);
-//  painter.setPen(*pen_);
-  painter.setBrush(QBrush(Qt::blue));
+    const auto& matrix = controller_->GetMatr();
+  pen_->setWidth(0);
+ pen_->setColor(Qt::blue);
+ painter.setPen(*pen_);
+//  painter.setBrush(QBrush(Qt::blue));
 
    for (size_t i = 0; i < kMaxSize; ++i)
      for (size_t j = 0; j < kMaxSize; ++j) {
        if (i+j < 30) {
         painter.setBrush(QBrush(Qt::red));
         painter.drawPoint(i, j);
-        painter.setBrush(QBrush(Qt::blue));
-       } 
+       }
    }
   update();
 
