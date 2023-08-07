@@ -6,27 +6,20 @@
 #include <vector>
 
 #include <QDebug>
+
+
+
 class  Model
 {
-    public:
-    
-    // class Object
-    // {
-    //     public:
-    //     std::vector<std::vector<int>> matrix_;
-    // }
-
  private:
     figure_t fig_;
-    std::vector<std::vector<int>> matrix_;
+    std::vector<std::vector<int>> matrix_{std::vector<std::vector<int>>(9, std::vector<int>(9))};
 
  public:
     Model() {
-        matrix_ = std::vector<std::vector<int>>(9, std::vector<int>(9));
+//        matrix_ = std::vector<std::vector<int>>(9, std::vector<int>(9));
 //              for (auto el : matrix_) {
-// //                 for (auto e : el) {
 //                      qDebug() << el;
-// //                 }
 //              }
 
             }
@@ -35,12 +28,9 @@ class  Model
     void GenerateCircle(float radius) {radius++;}
     void GenerateRectangle(float width, float height) {width++; ++height;}
     const std::vector<std::vector<int>>& GetMatrix() const {
-        for (auto el : matrix_) {
-                     qDebug() << el;
-             }
-//        const auto& res = std::vector<std::vector<int>>(9, std::vector<int>(9));
+//        for (auto el : matrix_) {
+//                     qDebug() << el;
+//             }
              return matrix_;}
+
 };
-
-
-

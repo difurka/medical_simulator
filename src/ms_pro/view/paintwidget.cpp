@@ -1,11 +1,12 @@
 #include "paintwidget.h"
 
+#include "utils/utils.h"
 
 PaintWidget::PaintWidget(QWidget *parent)
   : QWidget{parent}
   , controller_(nullptr)
 {
-pixmap_ = QPixmap(300, 300);
+pixmap_ = QPixmap(kMaxSize, kMaxSize);
    pen_ = std::make_unique<QPen>( QPen(Qt::white, kDefaultPenWidth, Qt::SolidLine, Qt::SquareCap, Qt::RoundJoin));
 }
 
@@ -45,7 +46,8 @@ void PaintWidget::DrawFigure(figure_t type) {
 
     Clear();
     QPainter painter{&pixmap_};
-    const auto& matrix = controller_->GetMatr();
+   auto matrix = controller_->GetMatr();
+
   pen_->setWidth(0);
  pen_->setColor(Qt::blue);
  painter.setPen(*pen_);
@@ -60,7 +62,7 @@ void PaintWidget::DrawFigure(figure_t type) {
    }
   update();
 
-
+//   const auto& matrix = controller_->GetMatr();
 }
 
 

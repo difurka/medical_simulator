@@ -15,5 +15,5 @@
     }
 
     const std::vector<std::vector<int>>& Controller::GetMatr() const {
-        model_->GetMatrix();
+        return model_->GetMatrix();
     }
