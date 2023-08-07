@@ -22,6 +22,10 @@ private:
   void resizeEvent(QResizeEvent *event) override;
 
   void Clear();
+  void SetBackArea(QColor back_area);
+  void SetPixelArea(QColor pixel_area);
+
+
 
  private:
   Controller* controller_;
@@ -29,6 +33,8 @@ private:
   QPixmap pixmap_;
 
   std::unique_ptr<QPen> pen_;
+  QColor back_area_;
+  QColor pixel_area_;
 
 };
 

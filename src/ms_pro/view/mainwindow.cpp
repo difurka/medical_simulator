@@ -15,6 +15,8 @@ MainWindow::MainWindow(Controller* controller, QWidget *parent)
     ui->setupUi(this);
     ui->area->SetController(controller);
     InitSettings_();
+    controller_->GeneratePix(radius_);
+    UpdatePixels(radius_pixel_);
 
 }
 
@@ -66,7 +68,15 @@ void MainWindow::InitSettings_()
     ui->spin_rect_width->setMaximum(kMaxSize);
     ui->spin_rect_width->setValue((kMaxSize -kMinSize)/2);
 
+    // set area
     ui->area->resize(kMaxSize, kMaxSize);
+    ui->area->SetBackArea(col_back_);
+    ui->area->SetPixelArea(col_pixel_);
+
+    // model
+    controller_->SetPixelRad(radius_pixel_);
+    controller_->SetCircleRad(radius_);
+    controller_->SetRectSize(width_, height_);
 
 }
 
@@ -76,15 +86,25 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::Update() {
 
+void MainWindow::Update() {
     if (figure_ == figure_t::CIRCLE) {
         controller_->GenerateCirc(radius_);
     } else {
         controller_->GenerateRect(width_, height_);
     }
+    controller_->GeneratePix(radius_pixel_);
     Draw();
+}
 
+void MainWindow::UpdatePixels(int radius) {
+    if (figure_ == figure_t::CIRCLE) {
+        controller_->GenerateCirc(radius_);
+    } else {
+        controller_->GenerateRect(width_, height_);
+    }
+    controller_->ChangePixSize(radius_pixel_);
+    Draw();
 }
 
 void MainWindow::Draw()
@@ -111,7 +131,8 @@ void MainWindow::on_button_choose_colour_back_clicked()
     QColor color = GetColor_(col_back_);
     SetButtonColor_(ui->button_choose_colour_back, color);
     col_back_ = color;
-    Update();
+    ui->area->SetBackArea(col_back_);
+    Draw();
 }
 
 
@@ -120,20 +141,21 @@ void MainWindow::on_button_choose_colour_pixel_clicked()
     QColor color = GetColor_(col_pixel_);
     SetButtonColor_(ui->button_choose_colour_pixel, color);
     col_pixel_ = color;
-    Update();
+    ui->area->SetPixelArea(col_pixel_);
+    Draw();
 }
 
 void MainWindow::on_slider_pixel_size_valueChanged(int value) {
   ui->spin_pixel_size->setValue(value);
   radius_pixel_ = value;
-  Update();
+  UpdatePixels(radius_pixel_);
 }
 
 
 void MainWindow::on_spin_pixel_size_editingFinished() {
   ui->slider_pixel_size->setSliderPosition(ui->spin_pixel_size->value());
   radius_pixel_ = ui->spin_pixel_size->value();
-  Update();
+  UpdatePixels(radius_pixel_);
 }
 
 

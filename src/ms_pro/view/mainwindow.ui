@@ -569,7 +569,7 @@
      </size>
     </property>
     <property name="minimum">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="maximum">
      <number>20</number>
@@ -598,6 +598,9 @@
       <width>44</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
     </property>
     <property name="maximum">
      <number>20</number>
