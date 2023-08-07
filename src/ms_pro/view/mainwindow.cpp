@@ -219,4 +219,31 @@ void MainWindow::on_tab_choose_tabBarClicked(int index)
 
 
 
+void MainWindow::on_button_check_answer_clicked()
+{
+    float result = controller_->GetPercent();
+    ui->label_answer->setText(QString::number(result));
+    int answer = ui->spin_percents->value();
+
+    QPalette sample_palette;
+
+
+    if (std::abs(result-answer) < 5) {
+        sample_palette.setColor(QPalette::WindowText, Qt::green);
+        ui->label_level->setPalette(sample_palette);
+        ui->label_level->setText("Глаз алмаз!!");
+    } else if (std::abs(result-answer) < 10) {
+        sample_palette.setColor(QPalette::WindowText, Qt::blue);
+        ui->label_level->setPalette(sample_palette);
+        ui->label_level->setText("Близко к ответу");
+    } else if (std::abs(result-answer) < 20) {
+        sample_palette.setColor(QPalette::WindowText, Qt::black);
+        ui->label_level->setPalette(sample_palette);
+        ui->label_level->setText("Немного не так");
+    } else {
+        sample_palette.setColor(QPalette::WindowText, Qt::red);
+        ui->label_level->setPalette(sample_palette);
+        ui->label_level->setText("Далеко от ответа");
+    }
+}
 

@@ -36,3 +36,7 @@
     void Controller::ChangePixSize(int radius) {
         model_->ChangeSizePixel(radius);
     }
+
+    float Controller::GetPercent() {
+        return model_->GetPercents();
+    }

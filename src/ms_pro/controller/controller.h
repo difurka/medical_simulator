@@ -17,6 +17,7 @@ class Controller
     void SetCircleRad(int radius_);
     void SetRectSize(int width_, int height_);
     void ChangePixSize(int radius);
+    float GetPercent();
 
 
  private:

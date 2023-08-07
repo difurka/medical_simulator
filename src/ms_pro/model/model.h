@@ -67,11 +67,26 @@ class  Model
     void GeneratePixel(int radius) {
         pixels_.clear();
         srand((unsigned) time(NULL));
-        if (fig_ == figure_t::CIRCLE) {
-            pixel_number_ = rand() % (int)(radius_*radius_/(pixel_radius_*pixel_radius_));
-        } else {
-            pixel_number_ = rand() % (width_*height_/(3*pixel_radius_*pixel_radius_)); // rand() % (int)((width_*height_)/ (3.14 *pixel_radius_*pixel_radius_));
-        }
+
+            if (fig_ == figure_t::CIRCLE) {
+                auto rate = (int)(radius_*radius_/(pixel_radius_*pixel_radius_));
+                if (rate > 1) {
+                    pixel_number_ = rand() % rate;
+                } else {
+                    pixel_number_ = 0;
+                }
+
+
+            } else {
+                auto rate = (int)(width_*height_/(4*pixel_radius_*pixel_radius_));
+                if (rate > 1) {
+                    pixel_number_ = rand() % (width_*height_/(3*pixel_radius_*pixel_radius_));
+                } else {
+                    pixel_number_ = 0;
+                }
+
+            }
+
 
         for (int n = 0; n < pixel_number_; ++n) {
             int random_x, random_y;
@@ -127,6 +142,23 @@ class  Model
     void SetRectangleSize(int width, int height) {
         width_ = width;
         height_ = height;
+    }
+
+    float GetPercents() {
+        int all_number = 0;
+        int pixel_number = 0;
+        for (int i = 0; i < kMaxSize; ++i) {
+            for (int j = 0; j < kMaxSize; ++j) {
+                if (matrix_[i][j] >0) {
+                    ++all_number;
+                    if (matrix_[i][j] == 2) {
+                        ++pixel_number;
+                    }
+                }
+            }
+        }
+        auto answer = static_cast<float>(pixel_number) / all_number * 100;
+        return std::round(answer);
     }
 
 };

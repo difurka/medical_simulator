@@ -46,6 +46,8 @@ private slots:
     void on_tab_choose_tabBarClicked(int index);
 
 
+    void on_button_check_answer_clicked();
+
 private:
     QColor GetColor_(QColor current_color);
     void SetButtonColor_(QPushButton *button, QColor color);
