@@ -1,7 +1,5 @@
 #pragma once
 
-#include "circle.h"
-#include "rectangle.h"
 #include "utils/utils.h"
 #include <stdlib.h>
 #include <vector>

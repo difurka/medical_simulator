@@ -13,6 +13,7 @@ MainWindow::MainWindow(Controller* controller, QWidget *parent)
     , controller_(controller)
 {
     ui->setupUi(this);
+
     ui->area->SetController(controller);
     InitSettings_();
     controller_->GeneratePix(radius_);
@@ -26,6 +27,7 @@ void MainWindow::InitSettings_()
     figure_t kFirstFigure = figure_t::CIRCLE;
     QColor kColBack = "#F1CFED";
     QColor kColPixel = Qt::blue;
+    QColor col_main_window_ = "#F0FFF0";
 
 
     col_back_ = kColBack;
@@ -34,6 +36,9 @@ void MainWindow::InitSettings_()
     ui->button_choose_colour_pixel->setStyleSheet(qss);
     qss = QString("background-color: %1").arg(col_back_.name());
     ui->button_choose_colour_back->setStyleSheet(qss);
+
+    qss = QString("background-color: %1").arg(col_main_window_.name());
+    setStyleSheet(qss);
 
     ui->label_colour_background->setToolTip ("Colour of back");
     figure_ = kFirstFigure;
@@ -72,6 +77,7 @@ void MainWindow::InitSettings_()
     ui->area->resize(kMaxSize, kMaxSize);
     ui->area->SetBackArea(col_back_);
     ui->area->SetPixelArea(col_pixel_);
+    ui->area->SetWindowArea(col_main_window_);
 
     // model
     controller_->SetPixelRad(radius_pixel_);

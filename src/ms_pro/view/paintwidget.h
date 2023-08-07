@@ -24,6 +24,7 @@ private:
   void Clear();
   void SetBackArea(QColor back_area);
   void SetPixelArea(QColor pixel_area);
+  void SetWindowArea(QColor window_area);
 
 
 
@@ -35,6 +36,6 @@ private:
   std::unique_ptr<QPen> pen_;
   QColor back_area_;
   QColor pixel_area_;
-
+  QColor window_area_;
 };
 

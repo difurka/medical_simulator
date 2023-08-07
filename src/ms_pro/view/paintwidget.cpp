@@ -8,31 +8,11 @@ PaintWidget::PaintWidget(QWidget *parent)
 {
     pixmap_ = QPixmap(kMaxSize, kMaxSize);
     pen_ = std::make_unique<QPen>( QPen(Qt::white, kDefaultPenWidth, Qt::SolidLine, Qt::SquareCap, Qt::RoundJoin));
-
-
-//    Clear();
-//    QPainter painter{&pixmap_};
-
-
-//    pen_->setWidth(1);
-//    pen_->setColor(back_area_);
-//    painter.setPen(*pen_);
-//    painter.setBrush(Qt::green);
-
-//   for (size_t i = 0; i < kMaxSize; ++i) {
-//     for (size_t j = 0; j < kMaxSize; ++j) {
-//           painter.drawPoint(i, j);
-//       }
-//   }
-//  update();
-
 }
 
  void PaintWidget::paintEvent(QPaintEvent *event)   // override
  {
    QPainter painter(this);
-//    pen_->setColor(back_area_);
-//    painter.setPen(*pen_);
    painter.drawPixmap(0, 0, pixmap_);
    update();
  }
@@ -73,7 +53,7 @@ void PaintWidget::DrawFigure(figure_t type)
            painter.setPen(*pen_);
            painter.drawPoint(i, j);
          } else {
-           pen_->setColor(Qt::white);
+           pen_->setColor(window_area_);
            painter.setPen(*pen_);
            painter.drawPoint(i, j);
        }
@@ -93,8 +73,14 @@ void PaintWidget::SetBackArea(QColor back_area)
 {
     back_area_ = back_area;
 }
+
 void PaintWidget::SetPixelArea(QColor pixel_area)
 {
     pixel_area_ = pixel_area;
+}
+
+void PaintWidget::SetWindowArea(QColor window_area)
+{
+    window_area_ = window_area;
 }
 

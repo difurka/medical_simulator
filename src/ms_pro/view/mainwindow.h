@@ -60,6 +60,7 @@ private:
     Ui::MainWindow *ui;
     QColor col_back_;
     QColor col_pixel_;
+    QColor col_main_window_;
     int radius_ = 75;
     int radius_pixel_ = 10;
     int width_ = 150;
